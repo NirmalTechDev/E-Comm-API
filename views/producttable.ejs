@@ -1,0 +1,93 @@
+<%- include('header') %>
+
+
+<style>
+    .oneimg{
+        height: 100px;
+        width: 100px;
+    }
+    .one{
+        width: 850px;
+        text-align: center;
+        margin-left:300px;
+    }
+    .twoimg{
+        height: 50px;
+        width: 50px;
+    }
+    .b1{
+        background-color: rgb(82, 80, 80);
+    }
+    .b2{
+        background-color: rgb(167, 46, 46);
+    }
+    button{
+        color: white;
+        font-weight: 900;
+    }
+</style>
+
+<h1 align="center" class="text-center m-5" > All Products of e-commerce app </h1>
+<table border="5" align="center" class="one" >
+    <tr style="background-color: rgba(138, 112, 112,0.4)">
+        <th>No.</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Stoct</th>
+        <th>Rating</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Discription</th>
+        <th>Tumbnail</th>
+        <th>Other Images</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    <% data.forEach(data => { %>
+       <tr>
+         <td><%= data._id %></td>
+         <td><%= data.name %></td>
+         <td><%= data.price %></td>
+         <td><%= data.discountpercentage %></td>
+         <td><%= data.stock%></td>
+         <td><%= data.rating%></td>
+         <td><%= data.brand%></td>
+         <td><%= data.category%></td>
+         <td><%= data.description%></td>
+         <td>
+            <img src="<%= data.thumbnail %>" alt="image not found..." class="oneimg">
+         </td>
+         <td>
+            <table border="">
+                <tr>
+                    <td>
+                        <img src="<%= data.images[0]%>" alt="image not found..." class="twoimg">
+                    </td>
+                    <td>
+                        <img src="<%= data.images[1]%>" alt="image not found..." class="twoimg">
+                    </td>
+                    <td>
+                        <img src="<%= data.images[2]%>" alt="image not found..." class="twoimg">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="<%= data.images[3]%>" alt="image not found..." class="twoimg">
+                    </td>
+                    <td>
+                        <img src="<%= data.images[4]%>" alt="image not found..." class="twoimg">
+                    </td>
+                </tr>
+            </table>
+         </td>
+         <td>
+            <button class="b1">update</button>
+         </td>
+         <td>
+            <button class="b2">delete</button>
+         </td>
+       </tr> 
+    <% }) %>
+</table>
+<%- include('footer') %>

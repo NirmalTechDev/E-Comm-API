@@ -1,0 +1,102 @@
+<%- include('header') %>
+<style>
+    .peta{ margin-top: 10px; justify-content:center; }
+</style>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper main" >
+    <!-- Content Header (Page header) -->
+    <section class="content-header sec">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-6 offset-3" >
+            <h1 style="text-align: center;">Form For Add Products</h1>
+          </div>
+          <div class="col-3" >
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+              <li class="breadcrumb-item active">Products Form</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content  ">
+      <div class="container-fluid ">
+        <div class="row peta">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary" >
+              <div class="card-header">
+                <h3 class="card-title">Quick Add</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="post" >
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Item's Name</label>
+                    <input type="text" class="form-control" placeholder="Enter product name" name="name" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Item's Price</label>
+                    <input type="text" class="form-control" placeholder="price" name="price" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Discount Percenteg</label>
+                    <input type="text" class="form-control" placeholder="discount" name="discountpercentage" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Stock Avilable</label>
+                    <input type="text" class="form-control" placeholder="item stock" name="stock" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Item's Rating</label>
+                    <input type="text" class="form-control" placeholder="item rating" name="rating" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Item's Brand</label>
+                    <input type="text" class="form-control" placeholder="item brand" name="brand" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Item's Category</label>
+                    <input type="text" class="form-control" placeholder="item category" name="category" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Item's Discreption</label>
+                    <textarea class="form-control" placeholder="item discreption" name="description" ></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Item's Thumbnail Link</label>
+                    <input type="text" class="form-control" placeholder="item thumbnail link" name="thumbnail" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Product Images links For slider</label>
+                    <input type="text" class="form-control" style="margin:5px;" placeholder="item images links" name="images" >
+                    <input type="text" class="form-control" style="margin:5px;" placeholder="item images links" name="images" >
+                    <input type="text" class="form-control" style="margin:5px;" placeholder="item images links" name="images" >
+                    <input type="text" class="form-control" style="margin:5px;" placeholder="item images links" name="images" >
+                    <input type="text" class="form-control" style="margin:5px;" placeholder="item images links" name="images" >
+                    <!-- <input type="text" class="form-control" style="margin:5;" placeholder="item images links"> -->
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer" >
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- <h1 style="color: rgb(13,3,4); text-align: center;" >Data Is Submited Successfully...</h1> -->
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<%- include('footer') %>

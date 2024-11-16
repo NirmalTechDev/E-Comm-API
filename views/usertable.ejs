@@ -1,0 +1,206 @@
+<%- include('header')%>
+
+
+    <style>
+        table {
+            width: 750px;
+            text-align: center;
+        }
+        td{
+            padding: 10px;
+        }
+        .b1 {
+            background-color: rgb(82, 80, 80);
+        }
+
+        .b2 {
+            background-color: rgb(167, 46, 46);
+        }
+
+        button {
+            color: white;
+            font-weight: 900;
+        }
+
+        a {
+            color: white;
+        }
+
+        .formperent {
+            height: 300px;
+            width: 425px;
+            background-color: #5079a1;
+            margin: auto;
+            border: 3px solid black;
+            border-radius: 20px;
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 43%;
+            transition: all 2s;
+        }
+
+        .two {
+            width: 90%;
+            color: white;
+            margin: auto;
+        }
+
+        .subtn {
+            background-color: rgb(48, 48, 250);
+            width: 100px;
+            margin: 7px;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        h3 {
+            text-align: center;
+            color: white;
+            font-weight: 900;
+        }
+    </style>
+
+    <h1 align="center" class="text-center m-5 blur"> All User Register in E-commerce App </h1>
+    <table border="5" align="center" class="blur">
+        <tr style="background-color: rgba(138, 112, 112,0.4)">
+            <th>No.</th>
+            <th>Name.</th>
+            <th>E-mail.</th>
+            <th>Password.</th>
+            <th>Phone No.</th>
+            <th>update</th>
+            <th>delete</th>
+        </tr>
+        <% data.forEach(data=>{ %>
+            <tr>
+                <td>
+                    <%= data._id %>
+                </td>
+                <td>
+                    <%= data.name %>
+                </td>
+                <td>
+                    <%= data.email %>
+                </td>
+                <td>
+                    <%= data.password %>
+                </td>
+                <td>
+                    <%= data.number %>
+                </td>
+                <td><button class="b1"
+                        onclick="updatedataform('<%= data._id %>','<%= data.name %>','<%= data.email %>','<%= data.password %>','<%= data.number %>')">Update</button>
+                </td>
+                <!-- <td><button class="b2" ><a href="/admin/remove/delete_user/<%= data._id %>">delete</a></button></td> -->
+                <td><button class="b2" onclick="confirmDelete(`<%- data._id %>`)">Delete</button></td>
+            </tr>
+            <% }) %>
+    </table>
+
+    <div class="formperent" id="f">
+        <h3>Update Form</h3>
+        <form action="">
+            <table class="two">
+                <tr>
+                    <td>id :</td>
+                    <td><input type="text" id="i"></td>
+                </tr>
+                <tr>
+                    <td>name :</td>
+                    <td><input type="text" id="n"></td>
+                </tr>
+                <tr>
+                    <td>email :</td>
+                    <td><input type="text" id="e"></td>
+                </tr>
+                <tr>
+                    <td>password :</td>
+                    <td><input type="text" id="p"></td>
+                </tr>
+                <tr>
+                    <td>mobail No. :</td>
+                    <td><input type="text" id="m"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button class="subtn" onclick="updatedata()">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <script>
+        function confirmDelete(userId) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                fetch(`/admin/remove/delete_user/${userId}`, {
+                    method: 'GET'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Handle success
+                            location.reload(); // Reload the page or update UI as needed
+                        } else {
+                            // Handle errors
+                            alert("Failed to delete user");
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+
+        function updatedataform(userId, username, useremail, userpassword, usernumber) {
+           
+            // document.getElementById("f").style.transition = "2s";
+            var a=document.getElementsByClassName('blur');
+            a[0].style.filter = 'blur(3px)';a[1].style.filter = 'blur(3px)'
+            document.getElementById('f').style.display = 'block';
+
+            document.getElementById('i').value = userId;
+            document.getElementById('n').value = username;
+            document.getElementById('e').value = useremail;
+            document.getElementById('p').value = userpassword;
+            document.getElementById('m').value = usernumber;
+        }
+
+        function updatedata() {
+            
+               var userId = document.getElementById('i').value;
+               var username = document.getElementById('n').value;
+               var useremail = document.getElementById('e').value;
+               var userpassword = document.getElementById('p').value;
+               var usernumber = document.getElementById('m').value;
+
+            if(confirm("Are you sure you want to Update this user?")) {
+                fetch('/admin/update/update_user/'+userId, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: username,
+                        email: useremail,
+                        password: userpassword,
+                        number: usernumber,
+                    })
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Handle success
+                            location.reload(); // Reload the page or update UI as needed
+                        } else {
+                            // Handle errors
+                            alert("Failed to Update user");
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+
+    </script>
+
+    <%- include('footer')%>
